@@ -69,8 +69,8 @@ end
 -------------------------
 
 do
-	local function update_player(tip) module:UpdateTooltip(tip, PT.PLAYER, PT.PlayerInfo, PT.EnemyInfo)  end
-	local function update_enemy(tip)  module:UpdateTooltip(tip, PT.ENEMY,  PT.EnemyInfo,  PT.PlayerInfo) end
+	local function update_player(tip) module:UpdateTooltip(tip, Enum.BattlePetOwner.Ally, PT.PlayerInfo, PT.EnemyInfo)  end
+	local function update_enemy(tip)  module:UpdateTooltip(tip, Enum.BattlePetOwner.Enemy,  PT.EnemyInfo,  PT.PlayerInfo) end
 	
 	function module:PetBattleStart(event)
 		if( event ~= "NOSCAN" ) then -- developer stuff
@@ -178,7 +178,7 @@ local function tooltip_ability_show(anchor, t)
 	
 	_G.PetBattleAbilityTooltip_SetAbility(side, pet, ab);
 	
-	if( side == PT.PLAYER ) then
+	if( side == Enum.BattlePetOwner.Ally ) then
 		_G.PetBattleAbilityTooltip_Show("TOPLEFT", anchor, "RIGHT", 10, 4);
 	else
 		_G.PetBattleAbilityTooltip_Show("TOPRIGHT", anchor, "LEFT", -10, 4);
@@ -205,7 +205,7 @@ function module:UpdateTooltip(tip, side, player, enemy)
 		tip:SetCell(line, 2 + pet, "|T"..enemy[pet].icon..":"..icon_size..":"..icon_size.."|t");
 		
 		if( pet == enemy.activePet ) then
-			if( side == PT.PLAYER ) then
+			if( side == Enum.BattlePetOwner.Ally ) then
 				tip:SetColumnColor(2 + pet, 1, 0, 0, 0.5);
 			else
 				tip:SetColumnColor(2 + pet, 0, 1, 0, 0.5);
@@ -236,7 +236,7 @@ function module:UpdateTooltip(tip, side, player, enemy)
 		
 		-- coloring active pet
 		if( pet == player.activePet ) then
-			if( side == PT.PLAYER ) then
+			if( side == Enum.BattlePetOwner.Ally ) then
 				tip:SetLineColor(line, 0, 1, 0, 0.5);
 			else
 				tip:SetLineColor(line, 1, 0, 0, 0.5);

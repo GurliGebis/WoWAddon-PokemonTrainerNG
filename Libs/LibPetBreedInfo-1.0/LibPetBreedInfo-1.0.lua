@@ -98,7 +98,7 @@ end
 --/run print(C_PetBattles.GetName(1,1),LibStub("LibPetBreedInfo-1.0"):GetBreedByPetBattleSlot(1,1))
 function lib:GetBreedByPetBattleSlot(petOwner,id)
 	if not C_PetBattles.IsInBattle() then return end
-	if petOwner ~= LE_BATTLE_PET_ALLY and petOwner ~= LE_BATTLE_PET_ENEMY then return end
+	if petOwner ~= Enum.BattlePetOwner.Ally and petOwner ~= Enum.BattlePetOwner.Enemy then return end
 	if id <= 0 or id > MAX_PETS_PER_TEAM and id <= C_PetBattles.GetNumPets(petOwner) then return end
 	local speedMultiplier  = C_PetBattles.GetStateValue(petOwner,id,STATE_Mod_SpeedPrecent)
 	local healthMultiplier = C_PetBattles.GetStateValue(petOwner,id,STATE_Mod_MaxHealthPrercent)
@@ -107,7 +107,7 @@ function lib:GetBreedByPetBattleSlot(petOwner,id)
 	speedMultiplier  = inverseStats(speedMultiplier)
 	healthMultiplier = inverseStats(healthMultiplier)
 
-	if C_PetBattles.IsWildBattle() and petOwner == LE_BATTLE_PET_ENEMY then
+	if C_PetBattles.IsWildBattle() and petOwner == Enum.BattlePetOwner.Enemy then
 		healthMultiplier = healthMultiplier * WILD_PET_HEALTH_MULTIPLIER
 	end
 	local speciesID = C_PetBattles.GetPetSpeciesID(petOwner,id)

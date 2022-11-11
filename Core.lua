@@ -34,10 +34,6 @@ PT.PET_INDEX = 1;
 PT.MAX_COMBAT_PETS = 3;
 PT.MAX_PET_ABILITY = _G.NUM_BATTLE_PET_ABILITIES;
 
-PT.WEATHER= _G.LE_BATTLE_PET_WEATHER;	-- 0
-PT.PLAYER = _G.LE_BATTLE_PET_ALLY;		-- 1
-PT.ENEMY  = _G.LE_BATTLE_PET_ENEMY;		-- 2
-
 PT.BONUS_SPEED_FASTER = 2;
 PT.BONUS_SPEED_EQUAL  = 1;
 PT.BONUS_SPEED_SLOWER = 0;
@@ -378,7 +374,7 @@ do
 			t[pet].displayID = displayID;
 			t[pet].breed = LibBreed:GetBreedName( LibBreed:GetBreedByPetBattleSlot(side, pet) or 0 );
 			
-			if( side == PT.ENEMY and PT:IsPVPBattle() ) then -- the ability scanner is only required during PvP battles
+			if( side == Enum.BattlePetOwner.Enemy and PT:IsPVPBattle() ) then -- the ability scanner is only required during PvP battles
 				local t1, t2 = {}, {};
 				_G.C_PetJournal.GetPetAbilityList(species, t1, t2);
 				
@@ -480,23 +476,23 @@ end
 
 -- initially scans both player and enemy pets and initializes all important data
 function PT:ScanPets()
-	scan_pets(PT.PLAYER, self.PlayerInfo);
-	scan_pets(PT.ENEMY , self.EnemyInfo );
+	scan_pets(Enum.BattlePetOwner.Ally, self.PlayerInfo);
+	scan_pets(Enum.BattlePetOwner.Enemy , self.EnemyInfo );
 end
 
 -- when no pets were scanned before, fill the tables with dummy data
 function PT:ScanDummyPets()
-	scan_dummys(PT.PLAYER, self.PlayerInfo);
-	scan_dummys(PT.ENEMY , self.EnemyInfo );
+	scan_dummys(Enum.BattlePetOwner.Ally, self.PlayerInfo);
+	scan_dummys(Enum.BattlePetOwner.Enemy , self.EnemyInfo );
 end
 
 -- rounds up the pet data (speed, hp)
 function PT:RoundUpPets(side)
-	if( not side or side == PT.PLAYER ) then
-		roundup_pets(PT.PLAYER, self.PlayerInfo);
+	if( not side or side == Enum.BattlePetOwner.Ally ) then
+		roundup_pets(Enum.BattlePetOwner.Ally, self.PlayerInfo);
 	end
-	if( not side or side == PT.ENEMY ) then
-		roundup_pets(PT.ENEMY , self.EnemyInfo );
+	if( not side or side == Enum.BattlePetOwner.Enemy ) then
+		roundup_pets(Enum.BattlePetOwner.Enemy , self.EnemyInfo );
 	end
 end
 
@@ -529,7 +525,7 @@ do
 		--  3. Pet-only (applies on one pet)
 		
 		-- get weather states
-		add_aura_states(player, (_G.C_PetBattles.GetAuraInfo(PT.WEATHER, PT.PAD_INDEX, 1)) );
+		add_aura_states(player, (_G.C_PetBattles.GetAuraInfo(Enum.BattlePetOwner.Weather, PT.PAD_INDEX, 1)) );
 		
 		-- get player-wide states
 		slot = _G.C_PetBattles.GetNumAuras(player.side, PT.PAD_INDEX) or 0; -- apparently can be nil

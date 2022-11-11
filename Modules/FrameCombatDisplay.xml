@@ -76,7 +76,7 @@
 				local parent = self:GetParent();
 				local master = parent:GetParent();
 				
-				if( master:GetID() == PT.ENEMY and PT:IsPVPBattle() ) then					
+				if( master:GetID() == Enum.BattlePetOwner.Enemy and PT:IsPVPBattle() ) then					
 					_G.PetBattleAbilityTooltip_SetAbilityByID(
 						master:GetID(),
 						parent:GetID(),
@@ -172,7 +172,7 @@
 	<Frame name="PTFramePetTemplate" framestrata="LOW" virtual="true">
 		<Animations>
 			<AnimationGroup parentKey="animHide">
-				<Alpha change="-1" duration="0.5" order="1" step="0.02" />
+				<Alpha fromAlpha="1" toAlpha="0" duration="0.5" order="1" />
 				<Scripts>
 					<OnFinished>
 						PT:GetModule("FrameCombatDisplay").BattleFrame_Pet_HideFinished(self);
@@ -180,7 +180,7 @@
 				</Scripts>
 			</AnimationGroup>
 			<AnimationGroup parentKey="animShow">
-				<Alpha change="1" duration="0.5" order="1" step="0.02" />
+				<Alpha fromAlpha="0" toAlpha="1" duration="0.5" order="1" />
 				<Scripts>
 					<OnStop>
 						PT:GetModule("FrameCombatDisplay").BattleFrame_Pet_ShowFinished(self);
@@ -205,8 +205,8 @@
 					</Anchors>
 					<Animations>
 						<AnimationGroup parentKey="animActive">
-							<Alpha change="1" duration="3" order="1" step="0.02" smoothing="IN_OUT" />
-							<Alpha change="-1" duration="3" order="2" step="0.02" smoothing="IN_OUT" />
+							<Alpha fromAlpha="0" toAlpha="1" duration="3" order="1" smoothing="IN_OUT" />
+							<Alpha fromAlpha="1" toAlpha="0" duration="3" order="2" smoothing="IN_OUT" />
 							<Scripts>
 								<OnPlay>
 									self:GetParent():SetAlpha(0);
@@ -421,7 +421,7 @@
 		</Size>
 		<Animations>
 			<AnimationGroup parentKey="animHide">
-				<Alpha change="-1" duration="1" order="1" step="0.02" />
+				<Alpha fromAlpha="1" toAlpha="0" duration="1" order="1" />
 				<Scripts>
 					<OnFinished>
 						self:GetParent():Hide();
@@ -429,7 +429,7 @@
 				</Scripts>
 			</AnimationGroup>
 			<AnimationGroup parentKey="animShow">
-				<Alpha change="1" duration="1" order="1" step="0.02" />
+				<Alpha fromAlpha="0" toAlpha="1" duration="1" order="1" />
 				<Scripts>
 					<OnFinished>
 						self:GetParent():SetAlpha(1);

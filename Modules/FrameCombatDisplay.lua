@@ -44,7 +44,7 @@ end
 
 -- get frame reference by side ID
 local function get_frame(side)
-	return side == PT.PLAYER and _G[FRAME_PLAYER] or _G[FRAME_ENEMY];
+	return side == Enum.BattlePetOwner.Ally and _G[FRAME_PLAYER] or _G[FRAME_ENEMY];
 end
 
 -------------------------
@@ -252,14 +252,14 @@ function module:OnEvent(event, ...)
 end
 
 function module:OnAuraBucket(side)
-	local player = get_frame(PT.PLAYER);
-	local enemy  = get_frame(PT.ENEMY);
+	local player = get_frame(Enum.BattlePetOwner.Ally);
+	local enemy  = get_frame(Enum.BattlePetOwner.Enemy);
 	
-	if( side[PT.WEATHER] or side[PT.PLAYER] ) then
+	if( side[Enum.BattlePetOwner.Weather] or side[Enum.BattlePetOwner.Ally] ) then
 		PT:ScanPetAuras(player.player);
 	end
 	
-	if( side[PT.WEATHER] or side[PT.ENEMY] ) then
+	if( side[Enum.BattlePetOwner.Weather] or side[Enum.BattlePetOwner.Enemy] ) then
 		PT:ScanPetAuras(enemy.player);
 	end
 	
@@ -432,7 +432,7 @@ do
 		local frame_name = self:GetName();
 		
 		-- we store the table ID's for further use and set the backdrop border colors, which need to be set once
-		if( self:GetID() == PT.PLAYER ) then
+		if( self:GetID() == Enum.BattlePetOwner.Ally ) then
 			self.player = PT.PlayerInfo;
 			self.enemy  = PT.EnemyInfo;
 			self.EnemyActive:SetBackdropBorderColor(1, 0, 0, 1);
@@ -653,7 +653,7 @@ do
 			script = true;
 			abilityButton = _G[self:GetName().."Pet"..pet]["Ability"..ab];
 			
-			if( self:GetID() == PT.ENEMY and PT:IsPVPBattle() ) then
+			if( self:GetID() == Enum.BattlePetOwner.Enemy and PT:IsPVPBattle() ) then
 				if( self.player[pet]["ab"..ab.."ok"] ) then
 					abilityButton.Approved:SetTexture("Interface\\RAIDFRAME\\ReadyCheck-Ready");
 				else
@@ -987,7 +987,7 @@ do
 		end
 		
 		-- player also may have glowing ability buttons
-		if( self:GetID() == PT.PLAYER ) then
+		if( self:GetID() == Enum.BattlePetOwner.Ally ) then
 			for ab = 1, PT.MAX_PET_ABILITY do
 				glow = _G.PetBattleFrame.BottomFrame.abilityButtons[ab]; -- bitching glow variable
 				if( glow and glow.glowFrame ) then					
@@ -1012,7 +1012,7 @@ do
 			glowing_update(petFrame.Ability3, glow3);
 			
 			-- Applies glowing to players ability buttons in the original UI
-			if( self:GetID() == PT.PLAYER ) then
+			if( self:GetID() == Enum.BattlePetOwner.Ally ) then
 				petFrame = _G.PetBattleFrame.BottomFrame.abilityButtons; -- reusing the petFrame variable. :D
 				
 				if( module.db.profile.ability_highlight_blizzard ) then

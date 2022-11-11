@@ -1,15 +1,20 @@
-## Interface: 90002
-## Title: Pokemon Trainer
-## Version: 9.0.1
+## Interface: 100002
+## Title: Pokemon Trainer NG
 ## Notes: The pet battle addon with many helpers!
-## Author: grdn
+## Author: grdn,GurliGebis
+## URL: https://www.curseforge.com/wow/addons/pokemon-trainer-ng
+## Version: @project-version@
 ## SavedVariables: PokemonTrainerDB, PTDevDB
 ## LoadOnDemand: 1
 ## LoadWith: Blizzard_Collections, Blizzard_PetBattleUI
+## X-Compatible-With: 100002
+## X-Curse-Packaged-Version: @project-version@
+## X-Curse-Project-Name: Pokemon Trainer NG
+## X-Curse-Project-ID: 714994
+## OptionalDeps: Ace3, iLib, LibCrayon-3.0, LibPetBreedInfo-1.0, LibPetJournal-2.0
 ## LoadManagers: AddonLoader
 ## X-LoadOn-Always: delayed
 ## Dependencies: Blizzard_Collections, Blizzard_PetBattleUI
-## OptionalDeps: Ace3, iLib, LibCrayon-3.0, LibPetBreedInfo-1.0, LibPetJournal-2.0
 
 
 includes.xml
