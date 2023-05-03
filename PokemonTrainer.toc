@@ -1,4 +1,4 @@
-## Interface: 100007
+## Interface: 100100
 ## Title: Pokemon Trainer NG
 ## Notes: The pet battle addon with many helpers!
 ## Author: grdn,GurliGebis
