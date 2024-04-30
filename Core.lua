@@ -1,5 +1,5 @@
 -----------------------------------
--- Setting up scope, upvalues and libs
+-- Setting up scope, upvalues and libs 
 -----------------------------------
 -- "|TInterface\\OptionsFrame\\UI-OptionsFrame-NewFeatureIcon:0:0:0:0|t"
 
