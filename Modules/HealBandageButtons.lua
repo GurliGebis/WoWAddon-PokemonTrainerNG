@@ -78,8 +78,8 @@ end
 function module:CheckMinimapTracking()
 	local name, icon, active;
 	
-	for i = 1, _G.GetNumTrackingTypes() do
-		name, icon, active = _G.GetTrackingInfo(i);
+	for i = 1, C_Minimap.GetNumTrackingTypes() do
+		name, icon, active = C_Minimap.GetTrackingInfo(i);
 		
 		if( icon == "Interface\\Icons\\tracking_wildpet" ) then			
 			break;
