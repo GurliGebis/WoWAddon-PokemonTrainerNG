@@ -1426,7 +1426,6 @@ end);
 -- called by the "edit positions" button in the config window
 local function OpenPositioning()
 	LibStub("AceConfigDialog-3.0"):Open("PokemonTrainer_FrameCombatDisplay", container); -- container == our custom AceGUI container
-	_G.InterfaceOptionsFrame:Hide();
 	
 	if( not _G.C_PetBattles.IsInBattle() ) then
 		PT:ScanDummyPets();

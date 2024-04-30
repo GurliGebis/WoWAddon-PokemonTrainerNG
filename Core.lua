@@ -66,7 +66,7 @@ function PT:OnEnable()
 
 	print("|cff00aaff"..AddonName.."|r: loaded.");
 	
-	_G.SlashCmdList["PT"] = function() _G.InterfaceOptionsFrame_OpenToCategory(AddonName); end
+	_G.SlashCmdList["PT"] = function() Settings.OpenToCategory(AddonName); end
 	_G["SLASH_PT1"] = "/pt";
 	
 	-- version check and reminder that the user may want to check the options
