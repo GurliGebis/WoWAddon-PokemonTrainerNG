@@ -1783,36 +1783,11 @@ function module:GetOptions()
 						module.BattleFrame_Options_Apply(_G[FRAME_ENEMY]);
 					end,
 				},
-				ability_highlight = {
-					type = "toggle",
-					name = L["Highlight buffed abilities"],
-					desc = L["Whenever your abilities are doing more damage based on buffs or weather, they will glow."],
-					order = 2,
-					get = function()
-						return self.db.profile.ability_highlight;
-					end,
-					set = function(_, value)
-						self.db.profile.ability_highlight = value;
-					end,
-				},
-				ability_highlight_blizzard = {
-					type = "toggle",
-					name = L["...on Blizzard Bar"],
-					desc = L["Applys ability glowing states on Blizzards Pet Action Buttons, too."],
-					order = 3,
-					get = function()
-						return self.db.profile.ability_highlight_blizzard;
-					end,
-					set = function(_, value)
-						self.db.profile.ability_highlight_blizzard = value;
-					end,
-					disabled = is_highlight_disabled,
-				},
 				ability_ramping = {
 					type = "toggle",
 					name = L["Display ability amplifying state"],
 					desc = L["Some abilities get stronger on each usage. If this option is enabled, you will see a red dot which gets more green the more you are using these abilities."],
-					order = 4,
+					order = 2,
 					width = "full",
 					get = function()
 						return self.db.profile.ability_ramping;
@@ -1883,6 +1858,43 @@ function module:GetOptions()
 						self.db.profile.cd_highlight_b = b;
 						self.db.profile.cd_highlight_a = a;
 					end,
+				},
+			},
+		},
+		broken = {
+			name = "Currently broken",
+			type = "group",
+			inline = true,
+			order = 7,
+			args = {
+				ability_highlight = {
+					type = "toggle",
+					name = L["Highlight buffed abilities"],
+					desc = L["Whenever your abilities are doing more damage based on buffs or weather, they will glow."],
+					order = 1,
+					get = function()
+						return false -- disabled until a workaround for the Blizzard rewrite is found.
+						--return self.db.profile.ability_highlight;
+					end,
+					set = function(_, value)
+						--self.db.profile.ability_highlight = value;
+					end,
+					disabled = true -- disabled until a workaround for the Blizzard rewrite is found.
+				},
+				ability_highlight_blizzard = {
+					type = "toggle",
+					name = L["...on Blizzard Bar"],
+					desc = L["Applys ability glowing states on Blizzards Pet Action Buttons, too."],
+					order = 2,
+					get = function()
+						return false -- disabled until a workaround for the Blizzard rewrite is found.
+						--return self.db.profile.ability_highlight_blizzard;
+					end,
+					set = function(_, value)
+						--self.db.profile.ability_highlight_blizzard = value;
+					end,
+					--disabled = is_highlight_disabled,
+					disabled = true -- disabled until a workaround for the Blizzard rewrite is found.
 				},
 			},
 		},
