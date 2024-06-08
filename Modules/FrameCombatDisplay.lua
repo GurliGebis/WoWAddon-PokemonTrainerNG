@@ -192,7 +192,7 @@ function module:OnEvent(event, ...)
 		local frame = get_frame(side);
 		local enemy = get_enemy(frame);
 		
-		self.glowing_hideall(frame);
+		--self.glowing_hideall(frame);
 		
 		PT:RoundUpPets(side);
 		PT:ScanPetAuras(frame.player);
@@ -842,44 +842,44 @@ do
 	
 	-- "blasts" glowing frames: instantly hides them out, removes them from the parent object and puts them into the heap
 	local function glowing_blast(self)
-		if( not self ) then return end;
-		
-		local glow = self:GetParent();
-		local frame = glow:GetParent();
-		
-		glow:Hide();
-		
-		table.insert(heap, glow);
-		frame.glowFrame = nil;
+		--if( not self ) then return end;
+		--
+		--local glow = self:GetParent();
+		--local frame = glow:GetParent();
+		--
+		--glow:Hide();
+		--
+		--table.insert(heap, glow);
+		--frame.glowFrame = nil;
 	end
 	
 	-- glowing frame script OnHide replacement, the original one calls Blizzards glow frame script
 	local function glowing_OnHide(self)
-		if( self.animOut:IsPlaying() ) then
-			self.animOut:Stop();
-			glowing_blast(self.animOut);
-		end
+		--if( self.animOut:IsPlaying() ) then
+		--	self.animOut:Stop();
+		--	glowing_blast(self.animOut);
+		--end
 	end
 	
 	-- re-defined this function because it needs to set finished = true
 	local function glowing_OnFinished(self)
-		local frame = self:GetParent();		
-		local frameWidth, frameHeight = frame:GetSize();
-		frame.spark:SetAlpha(0);
-		frame.innerGlow:SetAlpha(0);
-		frame.innerGlow:SetSize(frameWidth, frameHeight);
-		frame.innerGlowOver:SetAlpha(0.0);
-		frame.outerGlow:SetSize(frameWidth, frameHeight);
-		frame.outerGlowOver:SetAlpha(0.0);
-		frame.outerGlowOver:SetSize(frameWidth, frameHeight);
-		frame.ants:SetAlpha(1.0);
-		
-    frame.finished = true;
+		--local frame = self:GetParent();		
+		--local frameWidth, frameHeight = frame:GetSize();
+		--frame.spark:SetAlpha(0);
+		--frame.innerGlow:SetAlpha(0);
+		--frame.innerGlow:SetSize(frameWidth, frameHeight);
+		--frame.innerGlowOver:SetAlpha(0.0);
+		--frame.outerGlow:SetSize(frameWidth, frameHeight);
+		--frame.outerGlowOver:SetAlpha(0.0);
+		--frame.outerGlowOver:SetSize(frameWidth, frameHeight);
+		--frame.ants:SetAlpha(1.0);
+		--
+    	--frame.finished = true;
 	end
 	
 	-- OnUpdate script as used by Blizzard, too
 	local function glowing_OnUpdate(self, elapsed)
-		_G.AnimateTexCoords(self.ants, 256, 256, 48, 48, 22, elapsed, 0.01);
+		--_G.AnimateTexCoords(self.ants, 256, 256, 48, 48, 22, elapsed, 0.01);
 	end
 	
 	-- This function is needed because sometimes the animation isn't playing
@@ -887,149 +887,149 @@ do
 	-- waits until OnFinished is called, then checks for correct alphas and replaces itself in the OnUpdate handler
 	-- when everything works allright
 	local function glowing_OnUpdate_Bugfix(self, elapsed)
-		glowing_OnUpdate(self, elapsed);
-		
-		self.elapsed = self.elapsed + elapsed;
-		if( self.elapsed > 0.25 ) then
-			if( self.finished ) then
-				if( self.spark:GetAlpha() == 0 and self.innerGlow:GetAlpha() == 0 and self.innerGlowOver:GetAlpha() == 0 
-					and self.outerGlowOver:GetAlpha() == 0 and self.ants:GetAlpha() == 1 ) then
-					self:SetScript("OnUpdate", nil);
-					self:SetScript("OnUpdate", glowing_OnUpdate);
-				else
-					self.spark:SetAlpha(0);
-					self.innerGlow:SetAlpha(0);
-					self.innerGlowOver:SetAlpha(0);
-					self.outerGlowOver:SetAlpha(0);
-					self.ants:SetAlpha(1);
-				end
-			end
-			self.elapsed = 0;
-		end
+		--glowing_OnUpdate(self, elapsed);
+		--
+		--self.elapsed = self.elapsed + elapsed;
+		--if( self.elapsed > 0.25 ) then
+		--	if( self.finished ) then
+		--		if( self.spark:GetAlpha() == 0 and self.innerGlow:GetAlpha() == 0 and self.innerGlowOver:GetAlpha() == 0 
+		--			and self.outerGlowOver:GetAlpha() == 0 and self.ants:GetAlpha() == 1 ) then
+		--			self:SetScript("OnUpdate", nil);
+		--			self:SetScript("OnUpdate", glowing_OnUpdate);
+		--		else
+		--			self.spark:SetAlpha(0);
+		--			self.innerGlow:SetAlpha(0);
+		--			self.innerGlowOver:SetAlpha(0);
+		--			self.outerGlowOver:SetAlpha(0);
+		--			self.ants:SetAlpha(1);
+		--		end
+		--	end
+		--	self.elapsed = 0;
+		--end
 	end
 	
 	-- retrieves a glowing frame from the heap or, if there are no unused frames, creates a new
 	local function glowing_get()
-		local glow = table.remove(heap);
-		if( not glow ) then
-			glownum = glownum + 1;
-			glow = _G.CreateFrame("Frame", "PTGlowFrame"..glownum, _G.UIParent, "ActionBarButtonSpellActivationAlert");
-			
-			glow.animOut:SetScript("OnFinished", glowing_blast);
-			glow.animIn:SetScript("OnFinished", glowing_OnFinished);
-			glow:SetScript("OnHide", glowing_OnHide);
-		end
-		
-		glow.elapsed = 0;
-		glow.finished = false;
-		glow:SetScript("OnUpdate", glowing_OnUpdate_Bugfix);
-		
-		return glow;
+		--local glow = table.remove(heap);
+		--if( not glow ) then
+		--	glownum = glownum + 1;
+		--	glow = _G.CreateFrame("Frame", "PTGlowFrame"..glownum, _G.UIParent, "ActionBarButtonSpellActivationAlert");
+		--	
+		--	glow.animOut:SetScript("OnFinished", glowing_blast);
+		--	glow.animIn:SetScript("OnFinished", glowing_OnFinished);
+		--	glow:SetScript("OnHide", glowing_OnHide);
+		--end
+		--
+		--glow.elapsed = 0;
+		--glow.finished = false;
+		--glow:SetScript("OnUpdate", glowing_OnUpdate_Bugfix);
+		--
+		--return glow;
 	end
 	
 	-- show glowing frame: displays a glowing frame and anchors it to its parent
 	local function glowing_show(self)		
-		if( self.glowFrame ) then
-			if( self.glowFrame.animOut:IsPlaying() ) then
-				self.glowFrame.animOut:Stop();
-				self.glowFrame.animIn:Play();
-			end
-		else
-			local glow = glowing_get();
-			local width, height = self:GetSize();
-			
-			glow:SetParent(self);
-			glow:ClearAllPoints();
-			glow:SetSize(width * 1.6, height * 1.6);
-			glow:SetPoint("CENTER");
-			glow.animIn:Play();
-			
-			self.glowFrame = glow;
-		end
+		--if( self.glowFrame ) then
+		--	if( self.glowFrame.animOut:IsPlaying() ) then
+		--		self.glowFrame.animOut:Stop();
+		--		self.glowFrame.animIn:Play();
+		--	end
+		--else
+		--	local glow = glowing_get();
+		--	local width, height = self:GetSize();
+		--	
+		--	glow:SetParent(self);
+		--	glow:ClearAllPoints();
+		--	glow:SetSize(width * 1.6, height * 1.6);
+		--	glow:SetPoint("CENTER");
+		--	glow.animIn:Play();
+		--	
+		--	self.glowFrame = glow;
+		--end
 	end
 	
 	-- hide glowing frame: hides a glowing frame either with animation or not
 	local function glowing_hide(self)
-		local glow = self.glowFrame;
-		
-		if( glow ) then
-			if( glow.animIn:IsPlaying() ) then
-				glow.animIn:Stop();
-			end
-			if( self:IsVisible() ) then
-				glow.animOut:Play();
-			else
-				glowing_blast(self, glow);
-			end
-		end
+		--local glow = self.glowFrame;
+		--
+		--if( glow ) then
+		--	if( glow.animIn:IsPlaying() ) then
+		--		glow.animIn:Stop();
+		--	end
+		--	if( self:IsVisible() ) then
+		--		glow.animOut:Play();
+		--	else
+		--		glowing_blast(self, glow);
+		--	end
+		--end
 	end
 	
 	-- update glowing frame: it depends on status to either show or hide the glowing
 	local function glowing_update(self, status)
-		if( status ) then
-			glowing_show(self);
-		else
-			glowing_hide(self);
-		end
+		--if( status ) then
+		--	glowing_show(self);
+		--else
+		--	glowing_hide(self);
+		--end
 	end
 	
 	-- hides all currently displayed glowing frames on the active frame
 	-- module-public function because its needed by the event handler, too
 	function module.glowing_hideall(self)
-		local frame_name = self:GetName();
-		local glow;
-		
-		for ab = 1, self.player[self.player.activePet].numAbilities do
-			glow = _G[frame_name.."Pet"..self.player.activePet]["Ability"..ab].glowFrame;
-			if( glow ) then
-				glowing_blast(glow.animOut);
-			end
-		end
-		
-		-- player also may have glowing ability buttons
-		if( self:GetID() == Enum.BattlePetOwner.Ally ) then
-			for ab = 1, PT.MAX_PET_ABILITY do
-				glow = _G.PetBattleFrame.BottomFrame.abilityButtons[ab]; -- bitching glow variable
-				if( glow and glow.glowFrame ) then					
-					glowing_blast(glow.glowFrame.animOut);
-				end
-			end
-		end
+		--local frame_name = self:GetName();
+		--local glow;
+		--
+		--for ab = 1, self.player[self.player.activePet].numAbilities do
+		--	glow = _G[frame_name.."Pet"..self.player.activePet]["Ability"..ab].glowFrame;
+		--	if( glow ) then
+		--		glowing_blast(glow.animOut);
+		--	end
+		--end
+		--
+		---- player also may have glowing ability buttons
+		--if( self:GetID() == Enum.BattlePetOwner.Ally ) then
+		--	for ab = 1, PT.MAX_PET_ABILITY do
+		--		glow = _G.PetBattleFrame.BottomFrame.abilityButtons[ab]; -- bitching glow variable
+		--		if( glow and glow.glowFrame ) then					
+		--			glowing_blast(glow.glowFrame.animOut);
+		--		end
+		--	end
+		--end
 	end
 	
 	-- Updates ability button highlights, retrieves state bonuses from the core and either shows or hides glowing frames
 	function module.BattleFrame_UpdateAbilityHighlights(self)		
-		if( not _G.C_PetBattles.IsInBattle() ) then
-			return;
-		end
-		local petFrame = _G[self:GetName().."Pet"..self.player.activePet];
-		
-		if( module.db.profile.ability_highlight ) then
-			local glow1, glow2, glow3 = PT:GetAbilityStateBonuses(self.player, self.enemy);
-		
-			glowing_update(petFrame.Ability1, glow1);
-			glowing_update(petFrame.Ability2, glow2);
-			glowing_update(petFrame.Ability3, glow3);
-			
-			-- Applies glowing to players ability buttons in the original UI
-			if( self:GetID() == Enum.BattlePetOwner.Ally ) then
-				petFrame = _G.PetBattleFrame.BottomFrame.abilityButtons; -- reusing the petFrame variable. :D
-				
-				if( module.db.profile.ability_highlight_blizzard ) then
-					glowing_update(petFrame[1], glow1);
-					glowing_update(petFrame[2], glow2);
-					glowing_update(petFrame[3], glow3);
-				else
-					glowing_hide(petFrame[1]);
-					glowing_hide(petFrame[2]);
-					glowing_hide(petFrame[3]);
-				end
-			end
-		else
-			glowing_hide(petFrame.Ability1);
-			glowing_hide(petFrame.Ability2);
-			glowing_hide(petFrame.Ability3);
-		end
+		--if( not _G.C_PetBattles.IsInBattle() ) then
+		--	return;
+		--end
+		--local petFrame = _G[self:GetName().."Pet"..self.player.activePet];
+		--
+		--if( module.db.profile.ability_highlight ) then
+		--	local glow1, glow2, glow3 = PT:GetAbilityStateBonuses(self.player, self.enemy);
+		--
+		--	glowing_update(petFrame.Ability1, glow1);
+		--	glowing_update(petFrame.Ability2, glow2);
+		--	glowing_update(petFrame.Ability3, glow3);
+		--	
+		--	-- Applies glowing to players ability buttons in the original UI
+		--	if( self:GetID() == Enum.BattlePetOwner.Ally ) then
+		--		petFrame = _G.PetBattleFrame.BottomFrame.abilityButtons; -- reusing the petFrame variable. :D
+		--		
+		--		if( module.db.profile.ability_highlight_blizzard ) then
+		--			glowing_update(petFrame[1], glow1);
+		--			glowing_update(petFrame[2], glow2);
+		--			glowing_update(petFrame[3], glow3);
+		--		else
+		--			glowing_hide(petFrame[1]);
+		--			glowing_hide(petFrame[2]);
+		--			glowing_hide(petFrame[3]);
+		--		end
+		--	end
+		--else
+		--	glowing_hide(petFrame.Ability1);
+		--	glowing_hide(petFrame.Ability2);
+		--	glowing_hide(petFrame.Ability3);
+		--end
 	end
 end
 
