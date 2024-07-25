@@ -367,7 +367,7 @@ do
 			t[pet].power = petPower;
 			t[pet].speed = petSpeed;
 			t[pet].icon = petIcon;
-			t[pet].quality = petQuality - 1; -- little hack, the API returns (actual_pet_quality + 1) -.-
+			t[pet].quality = petQuality;
 			t[pet].hp = petHP;
 			t[pet].hpM = petMaxHP;
 			t[pet].numAbilities = numAbilities;
@@ -436,7 +436,7 @@ do
 			t[pet].power = t[pet].level * random(2, 20);
 			t[pet].speed = t[pet].level * random(7, 15);
 			t[pet].icon = "INTERFACE\\ICONS\\INV_CRATE_02";
-			t[pet].quality = pet + ((side - 1) * 3) - 1;
+			t[pet].quality = pet + ((side - 1) * 3);
 			t[pet].hp = random(0, 10);
 			t[pet].hpM = 10;
 			t[pet].numAbilities = random(1, 3);
