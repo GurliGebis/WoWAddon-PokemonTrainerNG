@@ -128,9 +128,9 @@ function module.Button_UpdateCooldown(self)
 	local start, duration, enable;
 	
 	if( self:GetID() == 1 ) then
-		start, duration, enable = _G.GetSpellCooldown(module.petHealSpell);
+		start, duration, enable = C_Spell.GetSpellCooldown(module.petHealSpell);
 	else
-		start, duration, enable = _G.GetItemCooldown(module.petBandage);		
+		start, duration, enable = C_Item.GetItemCooldown(module.petBandage);		
 	end
 	
 	_G.CooldownFrame_SetTimer(self.cooldown, start, duration, enable);
@@ -155,8 +155,8 @@ function module.Button_UpdateUsability(self)
 		end
 		
 		local id = module.petBandage;
-		local name, _, _, _, _, _, _, _, _, icon = _G.GetItemInfo(id);				
-		local count = _G.GetItemCount(id);
+		local name, _, _, _, _, _, _, _, _, icon = C_Item.GetItemInfo(id);				
+		local count = C_Item.GetItemCount(id);
 		
 		self.icon:SetTexture(icon);
 		_G[self:GetName().."Count"]:SetText(count);

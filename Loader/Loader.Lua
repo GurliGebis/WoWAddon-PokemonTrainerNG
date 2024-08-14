@@ -1,7 +1,7 @@
 local LoadWithOptions = false;
 local function LoadPokemonTrainer() 
-    if( not _G.IsAddOnLoaded("Blizzard_Collections") ) then
-        _G.LoadAddOn("Blizzard_Collections");
+    if( not C_AddOns.IsAddOnLoaded("Blizzard_Collections") ) then
+        C_AddOns.LoadAddOn("Blizzard_Collections");
     end
 end
 

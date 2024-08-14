@@ -71,7 +71,7 @@ function PT:OnEnable()
 	
 	-- version check and reminder that the user may want to check the options
 	local msg;
-	local version = tostring(_G.GetAddOnMetadata(AddonName, "Version"));
+	local version = tostring(C_AddOns.GetAddOnMetadata(AddonName, "Version"));
 	if( self.db.profile.version ~= version ) then
 		if( self.db.profile.version == "" ) then
 			msg = "|cff00aaff"..AddonName.."|r: "..L["First run, you may wanna check /pt for options."];
@@ -100,7 +100,7 @@ function PT:OnEnable()
 	-- *************************************************************************************
 	local LibPetJournal = LibStub("LibPetJournal-2.0")
 	LibPetJournal.RegisterCallback(self, "PostPetListUpdated", function()
-		if not _G.IsAddOnLoaded("Blizzard_Collections") then _G.LoadAddOn("Blizzard_Collections") end
+		if not C_AddOns.IsAddOnLoaded("Blizzard_Collections") then C_AddOns.LoadAddOn("Blizzard_Collections") end
 		LibPetJournal.UnregisterCallback(self, "PostPetListUpdated")
 	end)
 end
