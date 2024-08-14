@@ -14,11 +14,11 @@
 				
 				if( self:GetID() == 1 ) then
 					local id = module.petHealSpell;
-					name, _, icon = _G.GetSpellInfo(id);
+					name, _, icon = C_Spell.GetSpellInfo(id);
 					self:SetAttribute("spell", name);
 				else
 					local id = module.petBandage;
-					name, _, _, _, _, _, _, count, _, icon = _G.GetItemInfo(id);
+					name, _, _, _, _, _, _, count, _, icon = C_Item.GetItemInfo(id);
 					self:SetAttribute("item", name);
 				end
 				
