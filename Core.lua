@@ -761,3 +761,21 @@ function PT:OpenOptions()
 	PT.OpenOptions = nil; -- this function is needed once and gets deleted
 	return options;
 end
+
+local addonCompartmentTooltip = "Pokemon Trainer NG\n|cffffff00Click|r to open the options dialog."
+AddonCompartmentFrame:RegisterAddon({
+    text = "Pokemon Trainer NG",
+    icon = "Interface/Icons/petjournalportrait.blp",
+    notCheckable = true,
+    func = function(button, menuInputData, menu)
+        Settings.OpenToCategory(AddonName)
+    end,
+    funcOnEnter = function(button)
+        MenuUtil.ShowTooltip(button, function(tooltip)
+            tooltip:SetText(addonCompartmentTooltip)
+        end)
+    end,
+    funcOnLeave = function(button)
+        MenuUtil.HideTooltip(button)
+    end,
+})
