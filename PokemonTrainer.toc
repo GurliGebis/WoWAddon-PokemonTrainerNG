@@ -1,4 +1,4 @@
-## Interface: 110002
+## Interface: 110005
 ## Title: Pokemon Trainer NG
 ## Notes: The pet battle addon with many helpers!
 ## Author: grdn,GurliGebis
@@ -7,7 +7,7 @@
 ## SavedVariables: PokemonTrainerDB, PTDevDB
 ## LoadOnDemand: 1
 ## LoadWith: Blizzard_Collections, Blizzard_PetBattleUI
-## X-Compatible-With: 110002
+## X-Compatible-With: 110005
 ## X-Curse-Packaged-Version: @project-version@
 ## X-Curse-Project-Name: Pokemon Trainer NG
 ## X-Curse-Project-ID: 714994
