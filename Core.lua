@@ -468,8 +468,10 @@ do
 			petSpeed = _G.C_PetBattles.GetSpeed(side, pet);
 			petHP = _G.C_PetBattles.GetHealth(side, pet);
 			
-			t[pet].speed = petSpeed;
-			t[pet].hp = petHP;
+			if t[pet] then
+				t[pet].speed = petSpeed;
+				t[pet].hp = petHP;
+			end
 		end
 	end
 end
