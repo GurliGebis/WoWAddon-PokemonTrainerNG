@@ -764,20 +764,22 @@ function PT:OpenOptions()
 	return options;
 end
 
-local addonCompartmentTooltip = "Pokemon Trainer NG\n|cffffff00Click|r to open the options dialog."
-AddonCompartmentFrame:RegisterAddon({
-    text = "Pokemon Trainer NG",
-    icon = "Interface/Icons/petjournalportrait.blp",
-    notCheckable = true,
-    func = function(button, menuInputData, menu)
-        Settings.OpenToCategory(AddonName)
-    end,
-    funcOnEnter = function(button)
-        MenuUtil.ShowTooltip(button, function(tooltip)
-            tooltip:SetText(addonCompartmentTooltip)
-        end)
-    end,
-    funcOnLeave = function(button)
-        MenuUtil.HideTooltip(button)
-    end,
-})
+if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+	local addonCompartmentTooltip = "Pokemon Trainer NG\n|cffffff00Click|r to open the options dialog."
+	AddonCompartmentFrame:RegisterAddon({
+		text = "Pokemon Trainer NG",
+		icon = "Interface/Icons/petjournalportrait.blp",
+		notCheckable = true,
+		func = function(button, menuInputData, menu)
+			Settings.OpenToCategory(AddonName)
+		end,
+		funcOnEnter = function(button)
+			MenuUtil.ShowTooltip(button, function(tooltip)
+				tooltip:SetText(addonCompartmentTooltip)
+			end)
+		end,
+		funcOnLeave = function(button)
+			MenuUtil.HideTooltip(button)
+		end,
+	})
+end
