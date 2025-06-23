@@ -3,169 +3,95 @@ local L = LibStub("AceLocale-3.0"):NewLocale(AddonName, "frFR")
 
 if not L then return end
 
---[[Translation missing --]]
-L["...on Blizzard Bar"] = "...on Blizzard Bar"
---[[Translation missing --]]
-L["...only on different levels"] = "...only on different levels"
-L["Add battle-specific informations to battle pet tooltips."] = "Ajoute les informations sp\195\169cifiques du combat \195\160 l'infobulle des combats de mascotte."
---[[Translation missing --]]
+L["...on Blizzard Bar"] = "… sur la barre Blizzard"
+L["...only on different levels"] = "… seulement si niveaux différents"
+L["Add battle-specific informations to battle pet tooltips."] = "Ajoute les informations spécifiques du combat à l’infobulle des combats de mascotte."
 L["Alt"] = "Alt"
---[[Translation missing --]]
-L["Animate reorganizing"] = "Animate reorganizing"
---[[Translation missing --]]
-L["Applys ability glowing states on Blizzards Pet Action Buttons, too."] = "Applys ability glowing states on Blizzards Pet Action Buttons, too."
---[[Translation missing --]]
-L["As image"] = "As image"
---[[Translation missing --]]
-L["As text"] = "As text"
-L["Auction Search"] = "Recherche des ench\195\168res"
---[[Translation missing --]]
-L["Auto-resize"] = "Auto-resize"
---[[Translation missing --]]
-L["Battle frames are getting resized when players have less than three pets."] = "Battle frames are getting resized when players have less than three pets."
---[[Translation missing --]]
-L["Battle frames are usually colored black. Enable to set your own color."] = "Battle frames are usually colored black. Enable to set your own color."
+L["Animate reorganizing"] = "Animer la réorganisation"
+L["Applys ability glowing states on Blizzards Pet Action Buttons, too."] = "Applique également la mise en surbrillance de techniques sur les boutons d’action de mascottes de Blizzard."
+L["As image"] = "En tant qu’image"
+L["As text"] = "En tant que texte"
+L["Auction Search"] = "Recherche des enchères"
+L["Auto-resize"] = "Redimensionnement automatique"
+L["Battle frames are getting resized when players have less than three pets."] = "Les cadres de combat sont redimensionnés lorsque les joueurs ont moins de trois mascottes."
+L["Battle frames are usually colored black. Enable to set your own color."] = "Les cadres de combat sont généralement noirs. Activez cette option pour définir votre propre couleur."
 L["Battle Level"] = "Niveau du combat"
 L["Battle Pet Tooltip"] = "Infobulle du combat de mascotte"
---[[Translation missing --]]
-L["Both"] = "Both"
---[[Translation missing --]]
-L["Choose between the new (Frames) or the old (Tooltip) way of displaying combat data during pet battles."] = "Choose between the new (Frames) or the old (Tooltip) way of displaying combat data during pet battles."
---[[Translation missing --]]
-L["Choose whether you need to push a modifier key or not, when clicking an action button."] = "Choose whether you need to push a modifier key or not, when clicking an action button."
-L["Consolidated battle infos"] = "Information consolid\195\169es du combat"
---[[Translation missing --]]
+L["Both"] = "Les deux"
+L["Choose between the new (Frames) or the old (Tooltip) way of displaying combat data during pet battles."] = "Choisissez entre la nouvelle méthode (cadres) ou l’ancienne méthode (infobulle) d’affichage des données de combat pendant les combats de mascottes."
+L["Choose whether you need to push a modifier key or not, when clicking an action button."] = "Choisissez si vous devez appuyer sur une touche modificatrice ou non lorsque vous cliquez sur un bouton d’action."
+L["Consolidated battle infos"] = "Informations consolidées du combat"
 L["Ctrl"] = "Ctrl"
---[[Translation missing --]]
-L["Currently active pets will have a background color, if this option is activated."] = "Currently active pets will have a background color, if this option is activated."
---[[Translation missing --]]
-L["Cut off ability icon borders"] = "Cut off ability icon borders"
---[[Translation missing --]]
-L["Display ability amplifying state"] = "Display ability amplifying state"
---[[Translation missing --]]
-L["Display active enemy borders"] = "Display active enemy borders"
+L["Currently active pets will have a background color, if this option is activated."] = "Les mascottes actuellement actives auront une couleur d’arrière-plan, si cette option est activée."
+L["Currently broken"] = "Actuellement en panne"
+L["Cut off ability icon borders"] = "Couper les bordures des icônes de technique"
+L["Display ability amplifying state"] = "Afficher l’état des techniques à amplification"
+L["Display active enemy borders"] = "Afficher les bordures actives des ennemis"
 L["Display battle infos only on wild pets"] = "Afficher les infos de combat seulement sur les mascottes sauvages"
 L["Display battle pet level"] = "Afficher le niveau de la mascotte de combat"
---[[Translation missing --]]
-L["Display breeds"] = "Display breeds"
---[[Translation missing --]]
-L["Display rounds"] = "Display rounds"
-L["Display your battle pet team without their abilities and if they have at least one bonus or weakness."] = "Afficher votre \195\169quipe de mascotte sans leurs capacit\195\169d et si elles ont au moins un bonus ou un malus."
-L["Display: Frames"] = "Afficher: Cadre"
-L["Display: Tooltip"] = "Afficher: Infobulle"
---[[Translation missing --]]
-L["Draggable"] = "Draggable"
---[[Translation missing --]]
-L["Draws a border around the column of currently active enemys, so it is easier to detect the active pet on your frame for comparing bonuses."] = "Draws a border around the column of currently active enemys, so it is easier to detect the active pet on your frame for comparing bonuses."
+L["Display breeds"] = "Afficher les races"
+L["Display either 3D models for pets or not."] = "Affichez ou non des modèles 3D pour les mascottes."
+L["Display rounds"] = "Afficher les tours"
+L["Display your battle pet team without their abilities and if they have at least one bonus or weakness."] = "Afficher votre équipe de mascottes sans leurs techniques et si elles ont au moins un bonus ou un malus."
+L["Display: Frames"] = "Afficher : Cadre"
+L["Display: Tooltip"] = "Afficher : Infobulle"
+L["Draggable"] = "Glissable"
+L["Draws a border around the column of currently active enemys, so it is easier to detect the active pet on your frame for comparing bonuses."] = "Dessine une bordure autour de la colonne des ennemis actuellement actifs, il est donc plus facile de détecter la mascotte active sur votre cadre pour comparer les bonus."
 L["Enable"] = "Activer"
---[[Translation missing --]]
-L["Enable if you want to override the alpha of inactive pets. Set the new value on the right."] = "Enable if you want to override the alpha of inactive pets. Set the new value on the right."
+L["Enable if you want to override the alpha of inactive pets. Set the new value on the right."] = "Activez cette option si vous souhaitez ignorer l’alpha des mascottes inactives. Définissez la nouvelle valeur à droite."
 L["Enable this module."] = "Activer ce module"
---[[Translation missing --]]
-L["Enemy: pet icons"] = "Enemy: pet icons"
---[[Translation missing --]]
-L["First run, you may wanna check /pt for options."] = "First run, you may wanna check /pt for options."
---[[Translation missing --]]
-L["Frame scale"] = "Frame scale"
---[[Translation missing --]]
-L["Frame-related options"] = "Frame-related options"
---[[Translation missing --]]
-L["General ability settings"] = "General ability settings"
---[[Translation missing --]]
-L["Heal Pet Buttons"] = "Heal Pet Buttons"
---[[Translation missing --]]
-L["Highlight"] = "Highlight"
---[[Translation missing --]]
-L["Highlight active pets"] = "Highlight active pets"
---[[Translation missing --]]
-L["Highlight buffed abilities"] = "Highlight buffed abilities"
---[[Translation missing --]]
-L["Highlights ability buttons with a color when they are on cooldown."] = "Highlights ability buttons with a color when they are on cooldown."
---[[Translation missing --]]
-L["Horizontal position"] = "Horizontal position"
---[[Translation missing --]]
-L["If enabled, active pets are displayed first."] = "If enabled, active pets are displayed first."
-L["If this is not set, battle infos are also displayed on NPC and player pets."] = "Si ce param\195\168tre n'est pas d\195\169fini, les infos de combat seront \195\169galement affich\195\169es sur les PNJ et les mascottes des joueurs."
---[[Translation missing --]]
-L["If you are author/maintainer of a common auction UI addon and want this module supporting your addon, feel free to open a ticket on Curseforge or simply send me an email at"] = "If you are author/maintainer of a common auction UI addon and want this module supporting your addon, feel free to open a ticket on Curseforge or simply send me an email at"
---[[Translation missing --]]
-L["In addition, the background of active pets gets animated with a smooth effect."] = "In addition, the background of active pets gets animated with a smooth effect."
---[[Translation missing --]]
-L["Inactive pet alpha"] = "Inactive pet alpha"
---[[Translation missing --]]
-L["Known pet color"] = "Known pet color"
---[[Translation missing --]]
-L["Left"] = "Left"
---[[Translation missing --]]
-L["LibQTip based combat display for Pet Battles and the old way of displaying things.. Disable it if you want to use the frame based combat display."] = "LibQTip based combat display for Pet Battles and the old way of displaying things.. Disable it if you want to use the frame based combat display."
---[[Translation missing --]]
-L["Mirror frames"] = "Mirror frames"
---[[Translation missing --]]
-L["Modifier"] = "Modifier"
---[[Translation missing --]]
-L["More settings"] = "More settings"
---[[Translation missing --]]
-L["Mouse button"] = "Mouse button"
---[[Translation missing --]]
-L["Override color"] = "Override color"
---[[Translation missing --]]
-L["Perhaps, you heard of battle pet breeds before. Any pet has an assigned breed ID which defines which stats will grow larger than others while leveling up. Stats are health, power and speed. When this option is enabled, you can actually see pet breeds in during battles."] = "Perhaps, you heard of battle pet breeds before. Any pet has an assigned breed ID which defines which stats will grow larger than others while leveling up. Stats are health, power and speed. When this option is enabled, you can actually see pet breeds in during battles."
---[[Translation missing --]]
-L["Pet ability cooldowns"] = "Pet ability cooldowns"
---[[Translation missing --]]
-L["Pet highlightning"] = "Pet highlightning"
---[[Translation missing --]]
-L["Player: pet icons"] = "Player: pet icons"
---[[Translation missing --]]
-L["Please note that the Auction Search module isn't supporting third party auction addons. If such addons are actually changing the default auction UI and these changes break this module, simply disable it. Please do not open tickets if other addons break this module. Thanks."] = "Please note that the Auction Search module isn't supporting third party auction addons. If such addons are actually changing the default auction UI and these changes break this module, simply disable it. Please do not open tickets if other addons break this module. Thanks."
---[[Translation missing --]]
-L["Pokemon Trainer Options"] = "Pokemon Trainer Options"
---[[Translation missing --]]
-L["Preferred combat display"] = "Preferred combat display"
---[[Translation missing --]]
-L["Recently updated to version"] = "Recently updated to version"
---[[Translation missing --]]
-L["Removes the borders from any ability icon displayed by PT. Only for styling purposes."] = "Removes the borders from any ability icon displayed by PT. Only for styling purposes."
---[[Translation missing --]]
-L["Reorganize pets by activity"] = "Reorganize pets by activity"
---[[Translation missing --]]
-L["Reorganizing will take place with a cool animation."] = "Reorganizing will take place with a cool animation."
---[[Translation missing --]]
-L["Right"] = "Right"
---[[Translation missing --]]
-L["Select the mouse button on which clicks will execute actions."] = "Select the mouse button on which clicks will execute actions."
---[[Translation missing --]]
-L["Shift"] = "Shift"
---[[Translation missing --]]
-L["Some abilities get stronger on each usage. If this option is enabled, you will see a red dot which gets more green the more you are using these abilities."] = "Some abilities get stronger on each usage. If this option is enabled, you will see a red dot which gets more green the more you are using these abilities."
---[[Translation missing --]]
-L["Sometimes the actual battle pet level differs from the NPC pet level."] = "Sometimes the actual battle pet level differs from the NPC pet level."
---[[Translation missing --]]
-L["Switching the combat display doesn't work during pet battles."] = "Switching the combat display doesn't work during pet battles."
---[[Translation missing --]]
-L["True frame based combat display for Pet Battles and the next generation of Pokemon Trainer. Disable it if you want to use the tooltip based combat display."] = "True frame based combat display for Pet Battles and the next generation of Pokemon Trainer. Disable it if you want to use the tooltip based combat display."
---[[Translation missing --]]
-L["Unknown pet color"] = "Unknown pet color"
---[[Translation missing --]]
-L["Value"] = "Value"
---[[Translation missing --]]
-L["Vertical position"] = "Vertical position"
---[[Translation missing --]]
-L["When moving a battle frame, the enemy frame gets mirrored to the opposite side of the screen."] = "When moving a battle frame, the enemy frame gets mirrored to the opposite side of the screen."
---[[Translation missing --]]
-L["When pet tracking is enabled, this module displays two buttons on a separate and draggable frame. One for healing your battle pets with the spellcast, another for healing with pet bandages. Clicking these buttons is allowed when not in combat."] = "When pet tracking is enabled, this module displays two buttons on a separate and draggable frame. One for healing your battle pets with the spellcast, another for healing with pet bandages. Clicking these buttons is allowed when not in combat."
---[[Translation missing --]]
-L["When searching for pets in the auction house, this module sets red and green background colors which indicate whether you own this pet or not."] = "When searching for pets in the auction house, this module sets red and green background colors which indicate whether you own this pet or not."
---[[Translation missing --]]
-L["Whenever your abilities are doing more damage based on buffs or weather, they will glow."] = "Whenever your abilities are doing more damage based on buffs or weather, they will glow."
---[[Translation missing --]]
-L["Whether to show the cooldown of abilities on the buttons or not."] = "Whether to show the cooldown of abilities on the buttons or not."
---[[Translation missing --]]
-L["With animation"] = "With animation"
---[[Translation missing --]]
-L["You can now move the frames by dragging them around."] = "You can now move the frames by dragging them around."
---[[Translation missing --]]
-L["You may drag the frame around when this option is set."] = "You may drag the frame around when this option is set."
---[[Translation missing --]]
-L["You need to re-open this window when changing breed settings."] = "You need to re-open this window when changing breed settings."
-
+L["Enemy: pet icons"] = "Ennemi : icônes de mascottes"
+L["First run, you may wanna check /pt for options."] = "Première exécution : vous souhaiterez peut-être vérifier les options par /pt."
+L["Frame scale"] = "Échelle du cadre"
+L["Frame-related options"] = "Options liées au cadre"
+L["General ability settings"] = "Paramètres généraux des techniques"
+L["Heal Pet Buttons"] = "Boutons Ranimer les mascottes"
+L["Highlight"] = "Mise en évidence"
+L["Highlight active pets"] = "Mettre en évidence les mascottes actives"
+L["Highlight buffed abilities"] = "Mettre en évidence les techniques buffées"
+L["Highlights ability buttons with a color when they are on cooldown."] = "Met en évidence les boutons de technique avec une couleur lorsqu’ils sont en temps de recharge."
+L["Horizontal position"] = "Position horizontale"
+L["If enabled, active pets are displayed first."] = "Si cette option est activée, les mascottes actives sont affichées en premier."
+L["If this is not set, battle infos are also displayed on NPC and player pets."] = "Si ce paramètre n’est pas défini, les infos de combat seront également affichées sur les PNJ et les mascottes des joueurs."
+L["If you are author/maintainer of a common auction UI addon and want this module supporting your addon, feel free to open a ticket on Curseforge or simply send me an email at"] = "Si vous écrivez ou maintenez un addon d’interface pour l’hôtel des ventes et que vous souhaitez que cet addon prenne en charge votre addon complémentaire, n’hésitez pas à ouvrir un ticket sur Curseforge ou envoyez-moi simplement un e-mail à"
+L["In addition, the background of active pets gets animated with a smooth effect."] = "De plus, l’arrière-plan des mascottes actives est animé avec un effet fluide."
+L["Inactive pet alpha"] = "Alpha des mascottes inactives"
+L["Known pet color"] = "Couleur des mascottes connues"
+L["Left"] = "Gauche"
+L["LibQTip based combat display for Pet Battles and the old way of displaying things.. Disable it if you want to use the frame based combat display."] = "Affichage de combat basé sur LibQTip pour les combats de mascottes et l’ancienne façon d’afficher les choses. Désactivez-le si vous souhaitez utiliser l’affichage de combat basé sur le cadre."
+L["Mirror frames"] = "Refléter les cadres"
+L["Modifier"] = "Touche modificatrice"
+L["More settings"] = "Plus de paramètres"
+L["Mouse button"] = "Bouton de la souris"
+L["Override color"] = "Remplacer la couleur"
+L["Perhaps, you heard of battle pet breeds before. Any pet has an assigned breed ID which defines which stats will grow larger than others while leveling up. Stats are health, power and speed. When this option is enabled, you can actually see pet breeds in during battles."] = "Vous avez peut-être déjà entendu parler des races de mascottes de combat. Chaque familier possède un identifiant de race qui définit quelles statistiques augmentent plus largement que les autres lors de sa progression. Ces statistiques sont les points de vie, la puissance et la vitesse. Lorsque cette option est activée, vous pouvez voir les races de familiers pendant les combats."
+L["Pet ability cooldowns"] = "Temps de recharge des techniques de mascottes"
+L["Pet highlightning"] = "Mise en évidence des mascottes"
+L["Player: pet icons"] = "Joueur : icônes de mascottes"
+L["Please note that the Auction Search module isn't supporting third party auction addons. If such addons are actually changing the default auction UI and these changes break this module, simply disable it. Please do not open tickets if other addons break this module. Thanks."] = "Veuillez noter que le module Recherche d’enchères ne prend pas en charge les addons tiers pour l’hôtel des ventes. Si ces addons modifient l’interface d’enchères par défaut et que ces modifications perturbent ce module, désactivez-le simplement. Veuillez ne pas ouvrir de ticket si d’autres addons perturbent ce module. Merci."
+L["Pokemon Trainer Options"] = "Options de Pokemon Trainer"
+L["Preferred combat display"] = "Affichage de combat préféré"
+L["Recently updated to version"] = "Récemment mis à jour vers la version"
+L["Removes the borders from any ability icon displayed by PT. Only for styling purposes."] = "Supprime les bordures de toute icône de technique affichée par PT. Uniquement à des fins de style."
+L["Reorganize pets by activity"] = "Réorganiser les mascottes par activité"
+L["Reorganizing will take place with a cool animation."] = "La réorganisation se fera avec une animation sympa."
+L["Right"] = "Droit"
+L["Select the mouse button on which clicks will execute actions."] = "Sélectionnez le bouton de la souris sur lequel les clics exécuteront les actions."
+L["Shift"] = "Majuscule"
+L["Some abilities get stronger on each usage. If this option is enabled, you will see a red dot which gets more green the more you are using these abilities."] = "Certaines techniques deviennent plus puissantes à chaque utilisation. Si cette option est activée, un point rouge s’affichera, qui deviendra plus vert à mesure que vous utiliserez ces techniques."
+L["Sometimes the actual battle pet level differs from the NPC pet level."] = "Parfois, le niveau réel de la mascotte de combat diffère du niveau de la mascotte PNJ."
+L["Switching the combat display doesn't work during pet battles."] = "Le changement d’affichage de combat ne fonctionne pas pendant les combats de mascottes."
+L["True frame based combat display for Pet Battles and the next generation of Pokemon Trainer. Disable it if you want to use the tooltip based combat display."] = "Affichage de combat basé sur les cadres pour les combats de mascottes et la nouvelle génération de Pokemon Trainer. Désactivez-le si vous souhaitez utiliser l’affichage de combat basé sur les infobulles."
+L["Unknown pet color"] = "Couleur des mascottes inconnues"
+L["Use 3D Models"] = "Utiliser des modèles 3D"
+L["Value"] = "Valeur"
+L["Vertical position"] = "Position verticale"
+L["When moving a battle frame, the enemy frame gets mirrored to the opposite side of the screen."] = "Lorsque vous déplacez un cadre de combat, le cadre ennemi est reflété sur le côté opposé de l’écran."
+L["When pet tracking is enabled, this module displays two buttons on a separate and draggable frame. One for healing your battle pets with the spellcast, another for healing with pet bandages. Clicking these buttons is allowed when not in combat."] = "Lorsque le suivi des mascottes est activé, ce module affiche deux boutons sur un cadre séparé et déplaçable. L’un permet de soigner vos familiers de combat avec le sort, l’autre avec les bandages. Cliquer sur ces boutons est autorisé hors combat."
+L["When searching for pets in the auction house, this module sets red and green background colors which indicate whether you own this pet or not."] = "Lors de la recherche de mascottes dans l’hôtel des ventes, ce module définit des couleurs d’arrière-plan rouge et verte qui indiquent si vous possédez cette mascotte ou non."
+L["Whenever your abilities are doing more damage based on buffs or weather, they will glow."] = "Chaque fois que vos techniques infligent plus de dégâts en fonction des buffs ou de la météo, elles brillent."
+L["Whether to show the cooldown of abilities on the buttons or not."] = "S’il faut afficher ou non le temps de recharge des techniques sur les boutons."
+L["With animation"] = "Avec animation"
+L["You can now move the frames by dragging them around."] = "Vous pouvez maintenant déplacer les cadres en les faisant glisser."
+L["You may drag the frame around when this option is set."] = "Vous pouvez faire glisser le cadre lorsque cette option est définie."
+L["You need to re-open this window when changing breed settings."] = "Vous devez rouvrir cette fenêtre lorsque vous modifiez les paramètres de race."
