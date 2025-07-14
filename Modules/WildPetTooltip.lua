@@ -75,6 +75,17 @@ function module:ProcessTooltip()
 		return;
 	end
 
+	local numLines = _G.GameTooltip:NumLines();
+	local battleLevelText = L["Battle Level"];
+
+	for i = 1, numLines do
+		local line = _G["GameTooltipTextLeft" .. i];
+		if line and line:GetText() and line:GetText():find(battleLevelText) then
+			-- Already processed, don't add again
+			return;
+		end
+	end
+
 	local enemyType, enemyLevel = _G.UnitBattlePetType(unit), _G.UnitBattlePetLevel(unit)
 
 	local petID, ab1, ab2, ab3, slotLocked;
