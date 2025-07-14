@@ -36,7 +36,7 @@ function module:OnInitialize()
 	end
 end
 
-function module:OnEnable()	
+function module:OnEnable()
 	self:RegisterEvent("UPDATE_MOUSEOVER_UNIT", "ProcessTooltip");
 end
 
@@ -53,7 +53,7 @@ local function get_ability_infos(petLevel, slot, ab, enemyType)
 		return;
 	end
 	local _, abName, abIcon, _, _, _, abType, noStrongWeak = _G.C_PetBattles.GetAbilityInfoByID(ab);
-	
+
 	return PT:GetTypeBonus(abType, enemyType, noStrongWeak), abName, abIcon;
 end
 
@@ -63,62 +63,73 @@ local function isStrongWeak(strong, weak, modifier)
 	elseif( modifier < 1 ) then
 		weak = true;
 	end
-	
+
 	return strong, weak;
 end
 
 function module:ProcessTooltip()
 	local name, unit = _G.GameTooltip:GetUnit();
-	
+
 	local func = self.db.profile.onlywildpets and _G.UnitIsWildBattlePet or _G.UnitIsBattlePet;
 	if( not unit or not func(unit) ) then
 		return;
 	end
-	
+
+	local numLines = _G.GameTooltip:NumLines();
+	local battleLevelText = L["Battle Level"];
+
+	for i = 1, numLines do
+		local line = _G["GameTooltipTextLeft" .. i];
+		if line and line:GetText() and line:GetText():find(battleLevelText) then
+			-- Already processed, don't add again
+			return;
+		end
+	end
+
 	local enemyType, enemyLevel = _G.UnitBattlePetType(unit), _G.UnitBattlePetLevel(unit)
-	
+
 	local petID, ab1, ab2, ab3, slotLocked;
 	local _, customName, petLevel, petName, petType;
 	local r, g, b;
 	local modifier, abName, abIcon;
 	local strong, weak;
-	
+
 	if( self.db.profile.battlelevel and not(self.db.profile.battlelevelonlydiff and enemyLevel == _G.UnitLevel(unit)) ) then
 		_G.GameTooltip:AddDoubleLine("|cffffffff"..L["Battle Level"].."|r  "..enemyLevel);
 	end
-	
+
 	_G.GameTooltip:AddLine(" ");
-	
+
 	for pet = PT.PET_INDEX, PT.MAX_COMBAT_PETS do
 		petID, ab1, ab2, ab3, slotLocked = _G.C_PetJournal.GetPetLoadOutInfo(pet);
-		
+
 		if( not slotLocked and petID ) then
 			_, customName, petLevel, _, _, _, _, petName, _, petType = _G.C_PetJournal.GetPetInfoByPetID(petID);
 			petName = customName and customName.." (|cffffffff"..petName.."|r)" or petName;
-						
+
 			r, g, b = PT:GetDifficultyColor(petLevel, enemyLevel);
-			
+
 			if( self.db.profile.consolidated ) then
 				strong, weak = false, false;
-				
+
 				-- Ability 1
 				modifier = get_ability_infos(petLevel, 1, ab1, enemyType);
 				if( modifier ) then
 					strong, weak = isStrongWeak(strong, weak, modifier);
 				end
-				
+
 				-- Ability 2
 				modifier = get_ability_infos(petLevel, 2, ab2, enemyType);
 				if( modifier ) then
 					strong, weak = isStrongWeak(strong, weak, modifier);
 				end
-				
+
 				-- Ability 3
 				modifier = get_ability_infos(petLevel, 3, ab3, enemyType);
 				if( modifier ) then
 					strong, weak = isStrongWeak(strong, weak, modifier);
 				end
-				
+
 				_G.GameTooltip:AddDoubleLine(
 					petName.."  "..("|cff%02x%02x%02x%s|r"):format(r *255, g *255, b *255, petLevel),
 					(strong and "|T"..PT:GetTypeBonusIcon(1.5)..":14:14|t" or "")..
@@ -129,13 +140,13 @@ function module:ProcessTooltip()
 				if( pet > 1 ) then
 					_G.GameTooltip:AddLine(" ");
 				end
-				
+
 				-- Pet Type
 				_G.GameTooltip:AddDoubleLine(
 					petName.."  "..("|cff%02x%02x%02x%s|r"):format(r *255, g *255, b *255, petLevel),
 					"|T"..PT:GetTypeIcon(petType)..":14:14:0:0:128:256:62:102:128:169|t"
 				);
-			
+
 				-- Ability 1
 				modifier, abName, abIcon = get_ability_infos(petLevel, 1, ab1, enemyType);
 				if( modifier ) then
@@ -144,7 +155,7 @@ function module:ProcessTooltip()
 						"|T"..PT:GetTypeBonusIcon(modifier)..":14:14|t"
 					);
 				end
-				
+
 				-- Ability 2
 				modifier, abName, abIcon = get_ability_infos(petLevel, 2, ab2, enemyType);
 				if( modifier ) then
@@ -153,7 +164,7 @@ function module:ProcessTooltip()
 						"|T"..PT:GetTypeBonusIcon(modifier)..":14:14|t"
 					);
 				end
-				
+
 				-- Ability 3
 				modifier, abName, abIcon = get_ability_infos(petLevel, 3, ab3, enemyType);
 				if( modifier ) then
@@ -165,7 +176,7 @@ function module:ProcessTooltip()
 			end
 		end
 	end
-	
+
 	_G.GameTooltip:Show();
 end
 
@@ -177,7 +188,7 @@ do
 	local function is_disabled()
 		return not(module:IsEnabled() and module.db.profile.battlelevel);
 	end
-	
+
 	function module:GetOptions()
 		return {
 			battlelevel = {
