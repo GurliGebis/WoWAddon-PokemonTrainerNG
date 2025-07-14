@@ -37,18 +37,18 @@ function module:OnInitialize()
 	if( not self.db.profile.enabled ) then
 		self:SetEnabledState(false);
 	end
-	
+
 	-- set options
 	_G.PTHealBandageFrame:SetScale(module.db.profile.scale);
 	self:SetDraggable();
 	self:SetBindings(false, false);
 end
 
-function module:OnEnable()	
+function module:OnEnable()
 	self:RegisterEvent("MINIMAP_UPDATE_TRACKING", "CheckMinimapTracking");
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CombatEvent", true);
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CombatEvent", false);
-	
+
 	self:CheckMinimapTracking();
 end
 
@@ -56,7 +56,7 @@ function module:OnDisable()
 	self:UnregisterEvent("MINIMAP_UPDATE_TRACKING");
 	self:UnregisterEvent("PLAYER_REGEN_DISABLED");
 	self:UnregisterEvent("PLAYER_REGEN_ENABLED");
-	
+
 	_G.PTHealBandageFrame:Hide();
 end
 
@@ -72,20 +72,20 @@ function module:CombatEvent(in_combat)
 		if( self.prevdisplayed ) then
 			_G.PTHealBandageFrame:Show();
 		end
-	end	
+	end
 end
 
 function module:CheckMinimapTracking()
 	local name, icon, active;
-	
+
 	for i = 1, C_Minimap.GetNumTrackingTypes() do
 		name, icon, active = C_Minimap.GetTrackingInfo(i);
-		
-		if( icon == "Interface\\Icons\\tracking_wildpet" ) then			
+
+		if( icon == "Interface\\Icons\\tracking_wildpet" ) then
 			break;
 		end
 	end
-	
+
 	if( active ) then
 		_G.PTHealBandageFrame:Show();
 	else
@@ -102,7 +102,7 @@ function module:SetDraggable(draggable)
 		draggable = module.db.profile.draggable;
 	end
 	draggable = draggable and "LeftButton" or nil;
-	
+
 	_G.PTHealBandageFrame:RegisterForDrag(draggable);
 	_G.PTHealBandageFrameHealButton:RegisterForDrag(draggable);
 	_G.PTHealBandageFrameBandageButton:RegisterForDrag(draggable);
@@ -112,10 +112,10 @@ function module:SetBindings(button, modifier, value)
 	local old_button, old_modifier = self.db.profile.mousebutton, self.db.profile.modifier;
 	button = button and value or old_button;
 	modifier = modifier and value or old_modifier;
-	
+
 	_G.PTHealBandageFrameHealButton:SetAttribute(old_modifier..old_button, nil);
 	_G.PTHealBandageFrameHealButton:SetAttribute(modifier..button, "spell");
-	
+
 	_G.PTHealBandageFrameBandageButton:SetAttribute(old_modifier..old_button, nil);
 	_G.PTHealBandageFrameBandageButton:SetAttribute(modifier..button, "item");
 end
@@ -126,13 +126,13 @@ end
 
 function module.Button_UpdateCooldown(self)
 	local start, duration, enable;
-	
+
 	if( self:GetID() == 1 ) then
 		start, duration, enable = C_Spell.GetSpellCooldown(module.petHealSpell);
 	else
-		start, duration, enable = C_Item.GetItemCooldown(module.petBandage);		
+		start, duration, enable = C_Item.GetItemCooldown(module.petBandage);
 	end
-	
+
 	_G.CooldownFrame_SetTimer(self.cooldown, start, duration, enable);
 end
 
@@ -144,8 +144,8 @@ function module.Button_UpdateUsability(self)
 		self:SetButtonState("NORMAL", false);
 		self.icon:SetDesaturated(false);
 	end
-		
-	if( self:GetID() == 1 ) then		
+
+	if( self:GetID() == 1 ) then
 		if( self:IsEventRegistered("SPELLS_CHANGED") ) then
 			self:UnregisterEvent("SPELLS_CHANGED");
 		end
@@ -153,14 +153,14 @@ function module.Button_UpdateUsability(self)
 		if( self:IsEventRegistered("BAG_UPDATE_DELAYED") ) then
 			self:UnregisterEvent("BAG_UPDATE_DELAYED");
 		end
-		
+
 		local id = module.petBandage;
-		local name, _, _, _, _, _, _, _, _, icon = C_Item.GetItemInfo(id);				
+		local name, _, _, _, _, _, _, _, _, icon = C_Item.GetItemInfo(id);
 		local count = C_Item.GetItemCount(id);
-		
+
 		self.icon:SetTexture(icon);
 		_G[self:GetName().."Count"]:SetText(count);
-		
+
 		if( count > 0 ) then
 			self.icon:SetVertexColor(1, 1, 1, 1);
 		else
@@ -177,7 +177,7 @@ do
 	local function is_disabled(info)
 		return not module:IsEnabled() and true or not not _G.InCombatLockdown(); -- this API returns either 1 or nil, so we ensure a bool
 	end
-	
+
 	function module:GetOptions()
 		return {
 			draggable = {
