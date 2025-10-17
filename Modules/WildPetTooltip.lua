@@ -3,7 +3,7 @@
 -----------------------------------
 
 local AddonName, PT = ...;
-local module = PT:NewModule("WildPetTooltip", "AceEvent-3.0");
+local module = PT:NewModule("WildPetTooltip", "AceEvent-3.0", "AceHook-3.0");
 
 local L = LibStub("AceLocale-3.0"):GetLocale(AddonName);
 
@@ -37,11 +37,11 @@ function module:OnInitialize()
 end
 
 function module:OnEnable()
-	self:RegisterEvent("UPDATE_MOUSEOVER_UNIT", "ProcessTooltip");
+	self:HookScript(GameTooltip, "OnTooltipSetUnit", "ProcessTooltip");
 end
 
 function module:OnDisable()
-	self:UnregisterEvent("UPDATE_MOUSEOVER_UNIT");
+	self:Unhook(GameTooltip, "OnTooltipSetUnit");
 end
 
 ------------------------
@@ -67,23 +67,13 @@ local function isStrongWeak(strong, weak, modifier)
 	return strong, weak;
 end
 
-function module:ProcessTooltip()
-	local name, unit = _G.GameTooltip:GetUnit();
+function module:ProcessTooltip(tooltip)
+	local tooltip = tooltip or _G.GameTooltip;
+	local name, unit = tooltip:GetUnit();
 
 	local func = self.db.profile.onlywildpets and _G.UnitIsWildBattlePet or _G.UnitIsBattlePet;
 	if( not unit or not func(unit) ) then
 		return;
-	end
-
-	local numLines = _G.GameTooltip:NumLines();
-	local battleLevelText = L["Battle Level"];
-
-	for i = 1, numLines do
-		local line = _G["GameTooltipTextLeft" .. i];
-		if line and line:GetText() and line:GetText():find(battleLevelText) then
-			-- Already processed, don't add again
-			return;
-		end
 	end
 
 	local enemyType, enemyLevel = _G.UnitBattlePetType(unit), _G.UnitBattlePetLevel(unit)
@@ -95,10 +85,10 @@ function module:ProcessTooltip()
 	local strong, weak;
 
 	if( self.db.profile.battlelevel and not(self.db.profile.battlelevelonlydiff and enemyLevel == _G.UnitLevel(unit)) ) then
-		_G.GameTooltip:AddDoubleLine("|cffffffff"..L["Battle Level"].."|r  "..enemyLevel);
+		tooltip:AddDoubleLine("|cffffffff"..L["Battle Level"].."|r  "..enemyLevel);
 	end
 
-	_G.GameTooltip:AddLine(" ");
+	tooltip:AddLine(" ");
 
 	for pet = PT.PET_INDEX, PT.MAX_COMBAT_PETS do
 		petID, ab1, ab2, ab3, slotLocked = _G.C_PetJournal.GetPetLoadOutInfo(pet);
@@ -130,7 +120,7 @@ function module:ProcessTooltip()
 					strong, weak = isStrongWeak(strong, weak, modifier);
 				end
 
-				_G.GameTooltip:AddDoubleLine(
+				tooltip:AddDoubleLine(
 					petName.."  "..("|cff%02x%02x%02x%s|r"):format(r *255, g *255, b *255, petLevel),
 					(strong and "|T"..PT:GetTypeBonusIcon(1.5)..":14:14|t" or "")..
 					(weak and "|T"..PT:GetTypeBonusIcon(0.5)..":14:14|t" or "")..
@@ -138,11 +128,11 @@ function module:ProcessTooltip()
 				);
 			else
 				if( pet > 1 ) then
-					_G.GameTooltip:AddLine(" ");
+					tooltip:AddLine(" ");
 				end
 
 				-- Pet Type
-				_G.GameTooltip:AddDoubleLine(
+				tooltip:AddDoubleLine(
 					petName.."  "..("|cff%02x%02x%02x%s|r"):format(r *255, g *255, b *255, petLevel),
 					"|T"..PT:GetTypeIcon(petType)..":14:14:0:0:128:256:62:102:128:169|t"
 				);
@@ -150,7 +140,7 @@ function module:ProcessTooltip()
 				-- Ability 1
 				modifier, abName, abIcon = get_ability_infos(petLevel, 1, ab1, enemyType);
 				if( modifier ) then
-					_G.GameTooltip:AddDoubleLine(
+					tooltip:AddDoubleLine(
 						" |T"..abIcon..":14:14|t |cffffffff"..abName.."|r",
 						"|T"..PT:GetTypeBonusIcon(modifier)..":14:14|t"
 					);
@@ -159,7 +149,7 @@ function module:ProcessTooltip()
 				-- Ability 2
 				modifier, abName, abIcon = get_ability_infos(petLevel, 2, ab2, enemyType);
 				if( modifier ) then
-					_G.GameTooltip:AddDoubleLine(
+					tooltip:AddDoubleLine(
 						" |T"..abIcon..":14:14|t |cffffffff"..abName.."|r",
 						"|T"..PT:GetTypeBonusIcon(modifier)..":14:14|t"
 					);
@@ -168,7 +158,7 @@ function module:ProcessTooltip()
 				-- Ability 3
 				modifier, abName, abIcon = get_ability_infos(petLevel, 3, ab3, enemyType);
 				if( modifier ) then
-					_G.GameTooltip:AddDoubleLine(
+					tooltip:AddDoubleLine(
 						" |T"..abIcon..":14:14|t |cffffffff"..abName.."|r",
 						"|T"..PT:GetTypeBonusIcon(modifier)..":14:14|t"
 					);
@@ -177,7 +167,7 @@ function module:ProcessTooltip()
 		end
 	end
 
-	_G.GameTooltip:Show();
+	tooltip:Show();
 end
 
 ----------------------
