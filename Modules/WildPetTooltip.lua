@@ -37,11 +37,11 @@ function module:OnInitialize()
 end
 
 function module:OnEnable()
-	self:HookScript(GameTooltip, "OnTooltipSetUnit", "ProcessTooltip");
+	self:HookScript(_G.GameTooltip, "OnTooltipSetUnit", "ProcessTooltip");
 end
 
 function module:OnDisable()
-	self:Unhook(GameTooltip, "OnTooltipSetUnit");
+	self:Unhook(_G.GameTooltip, "OnTooltipSetUnit");
 end
 
 ------------------------
