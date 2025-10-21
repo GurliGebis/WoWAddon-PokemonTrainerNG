@@ -37,11 +37,23 @@ function module:OnInitialize()
 end
 
 function module:OnEnable()
-	self:HookScript(_G.GameTooltip, "OnTooltipSetUnit", "ProcessTooltip");
+	if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+		-- Retail: Use event-based approach
+		self:RegisterEvent("UPDATE_MOUSEOVER_UNIT", "ProcessTooltipRetail");
+	else
+		-- Classic: Use hook-based approach to fix tooltip duplication
+		self:HookScript(GameTooltip, "OnTooltipSetUnit", "ProcessTooltipClassic");
+	end
 end
 
 function module:OnDisable()
-	self:Unhook(_G.GameTooltip, "OnTooltipSetUnit");
+	if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+		-- Retail: Unregister the event
+		self:UnregisterEvent("UPDATE_MOUSEOVER_UNIT");
+	else
+		-- Classic: Unhook the script
+		self:Unhook(GameTooltip, "OnTooltipSetUnit");
+	end
 end
 
 ------------------------
@@ -67,13 +79,34 @@ local function isStrongWeak(strong, weak, modifier)
 	return strong, weak;
 end
 
+function module:ProcessTooltipRetail()
+	self:ProcessTooltip(_G.GameTooltip);
+end
+
+function module:ProcessTooltipClassic(tooltip)
+	self:ProcessTooltip(tooltip);
+end
+
 function module:ProcessTooltip(tooltip)
-	local tooltip = tooltip or _G.GameTooltip;
 	local name, unit = tooltip:GetUnit();
 
 	local func = self.db.profile.onlywildpets and _G.UnitIsWildBattlePet or _G.UnitIsBattlePet;
 	if( not unit or not func(unit) ) then
 		return;
+	end
+
+	-- For Retail (event-based), check for duplicates. For Classic (hook-based), skip this check
+	if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+		local numLines = tooltip:NumLines();
+		local battleLevelText = L["Battle Level"];
+
+		for i = 1, numLines do
+			local line = _G["GameTooltipTextLeft" .. i];
+			if line and line:GetText() and line:GetText():find(battleLevelText) then
+				-- Already processed, don't add again
+				return;
+			end
+		end
 	end
 
 	local enemyType, enemyLevel = _G.UnitBattlePetType(unit), _G.UnitBattlePetLevel(unit)
