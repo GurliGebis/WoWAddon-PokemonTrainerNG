@@ -282,7 +282,13 @@ do
 		local font, size, outline;
 		local fs;
 
-		for pet = PT.PET_INDEX, PT.PlayerInfo.numPets do
+		-- Safety check: ensure numPets is a valid number
+		local numPets = PT.PlayerInfo.numPets or 0;
+		if type(numPets) ~= "number" then
+			numPets = 0;
+		end
+
+		for pet = PT.PET_INDEX, numPets do
 			-- fs = _G[FRAME_PLAYER.."Pet"..pet].Button.Level; MODEL
 			fs = _G[FRAME_PLAYER.."Pet"..pet].Level;
 			font, size, outline = fs:GetFont();
@@ -295,7 +301,13 @@ do
 		local font, size, outline;
 		local fs;
 
-		for pet = PT.PET_INDEX, PT.EnemyInfo.numPets do
+		-- Safety check: ensure numPets is a valid number for PvP battles
+		local numPets = PT.EnemyInfo.numPets or 0;
+		if type(numPets) ~= "number" then
+			numPets = 0;
+		end
+
+		for pet = PT.PET_INDEX, numPets do
 			-- fs = _G[FRAME_ENEMY.."Pet"..pet].Button.Level; MODEL
 			fs = _G[FRAME_ENEMY.."Pet"..pet].Level;
 			font, size, outline = fs:GetFont();
@@ -307,7 +319,13 @@ do
 	local function adjust_color(level)
 		local r, g, b;
 
-		for pet = PT.PET_INDEX, PT.EnemyInfo.numPets do
+		-- Safety check: ensure numPets is a valid number for PvP battles
+		local numPets = PT.EnemyInfo.numPets or 0;
+		if type(numPets) ~= "number" then
+			numPets = 0;
+		end
+
+		for pet = PT.PET_INDEX, numPets do
 			r, g, b = PT:GetDifficultyColor(level, PT.EnemyInfo[pet].level);
 			-- _G[FRAME_ENEMY.."Pet"..pet].Button.Level:SetTextColor(r, g, b, 1); MODEL
 			_G[FRAME_ENEMY.."Pet"..pet].Level:SetTextColor(r, g, b, 1);

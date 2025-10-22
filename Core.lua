@@ -321,7 +321,7 @@ do
 	scan_pets = function(side, t)
 		wipe_pets(t);
 
-		local numPets = _G.C_PetBattles.GetNumPets(side);
+		local numPets = _G.C_PetBattles.GetNumPets(side) or 0;
 		local activePet = _G.C_PetBattles.GetActivePet(side);
 
 		local species, speciesName, petIcon, petType;
