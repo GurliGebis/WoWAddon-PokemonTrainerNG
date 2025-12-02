@@ -1,3 +1,6 @@
+# 11.2.7-20251202-1
+* Updated TOC to match WoW 11.2.7
+
 # 11.2.5-20251022-1
 * Workaround for when C_PetBattles.GetNumPets returns nil.
 
