@@ -51,6 +51,8 @@ PT.developer = true;
 -- Boot
 ------------------
 
+local settingsId
+
 function PT:OnInitialize()
 	self.db = LibStub("AceDB-3.0"):New("PokemonTrainerDB", { profile = { activeBattleDisplay = 1, version = "", alpha = false } }, "Default");
 
@@ -62,11 +64,13 @@ end
 
 function PT:OnEnable()
 	LibStub("AceConfig-3.0"):RegisterOptionsTable(AddonName, PT.OpenOptions);
-	LibStub("AceConfigDialog-3.0"):AddToBlizOptions(AddonName);
+	local _, id = LibStub("AceConfigDialog-3.0"):AddToBlizOptions(AddonName);
+
+	settingsId = id
 
 	print("|cff00aaff"..AddonName.."|r: loaded.");
 
-	_G.SlashCmdList["PT"] = function() Settings.OpenToCategory(AddonName); end
+	_G.SlashCmdList["PT"] = function() Settings.OpenToCategory(settingsId); end
 	_G["SLASH_PT1"] = "/pt";
 
 	-- version check and reminder that the user may want to check the options
@@ -771,7 +775,7 @@ if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
 		icon = "Interface/Icons/petjournalportrait.blp",
 		notCheckable = true,
 		func = function(button, menuInputData, menu)
-			Settings.OpenToCategory(AddonName)
+			Settings.OpenToCategory(settingsId)
 		end,
 		funcOnEnter = function(button)
 			MenuUtil.ShowTooltip(button, function(tooltip)
