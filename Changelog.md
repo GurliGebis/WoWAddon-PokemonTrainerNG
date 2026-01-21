@@ -1,3 +1,6 @@
+# 12.0.0-20260121-2
+* Updated Loader TOC to Midnight Pre-Patch.
+
 # 12.0.0-20260121-1
 * Updated TOC to Midnight Pre-Patch.
 
