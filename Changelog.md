@@ -1,3 +1,6 @@
+# 12.0.0-20260121-1
+* Updated TOC to Midnight Pre-Patch.
+
 # 11.2.7-20251210-1
 * Updated TOC for Mop Classic.
 
