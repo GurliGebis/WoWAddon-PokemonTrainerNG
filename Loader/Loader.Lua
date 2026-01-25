@@ -29,8 +29,13 @@ f:SetScript("OnEvent", function(self, event, ...)
         end
     elseif( event == "UPDATE_MOUSEOVER_UNIT" ) then
         local name, unit = _G.GameTooltip:GetUnit();
-        if( unit and _G.UnitIsBattlePet(unit) ) then
-            LoadPokemonTrainer(false);
+
+        -- Handle Classic, where issecretvalue is not defined.
+        local issecretvalue = issecretvalue or function(not_used) return false end
+
+        -- If the unit is a secret value, we cannot do anything.
+        if( unit and not issecretvalue(unit) and _G.UnitIsBattlePet(unit) ) then
+            LoadPokemonTrainer();
             f:UnregisterEvent(event);
         end
     end

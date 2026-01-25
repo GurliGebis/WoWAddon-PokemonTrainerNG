@@ -1,3 +1,6 @@
+# 12.0.0-20260125-1
+* Added call to issecretvalue to avoid errors with the target is secret.
+
 # 12.0.0-20260121-2
 * Updated Loader TOC to Midnight Pre-Patch.
 
