@@ -1,3 +1,6 @@
+# 12.0.0-20260209-1
+* Added more calls to issecretvalue to avoid errors with the target is secret.
+
 # 12.0.0-20260125-1
 * Added call to issecretvalue to avoid errors with the target is secret.
 

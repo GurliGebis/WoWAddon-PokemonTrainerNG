@@ -90,6 +90,14 @@ end
 function module:ProcessTooltip(tooltip)
 	local name, unit = tooltip:GetUnit();
 
+	-- Handle Classic, where issecretvalue is not defined.
+	local issecretvalue = issecretvalue or function(not_used) return false end
+
+	-- If the unit is a secret value, we cannot do anything.
+	if( unit and issecretvalue(unit)) then
+		return;
+	end
+
 	local func = self.db.profile.onlywildpets and _G.UnitIsWildBattlePet or _G.UnitIsBattlePet;
 	if( not unit or not func(unit) ) then
 		return;
