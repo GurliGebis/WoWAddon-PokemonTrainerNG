@@ -90,11 +90,8 @@ end
 function module:ProcessTooltip(tooltip)
 	local name, unit = tooltip:GetUnit();
 
-	-- Handle Classic, where issecretvalue is not defined.
-	local issecretvalue = issecretvalue or function(not_used) return false end
-
-	-- If the unit is a secret value, we cannot do anything.
-	if( unit and issecretvalue(unit)) then
+	-- Fix 1: Handle "secret" or tainted unit values
+	if (unit and issecretvariable and issecretvariable(unit)) then
 		return;
 	end
 
@@ -109,10 +106,14 @@ function module:ProcessTooltip(tooltip)
 		local battleLevelText = L["Battle Level"];
 
 		for i = 1, numLines do
-			local line = _G["GameTooltipTextLeft" .. i];
-			if line and line:GetText() and line:GetText():find(battleLevelText) then
-				-- Already processed, don't add again
-				return;
+			local line = _G[tooltip:GetName() .. "TextLeft" .. i];
+			if (line) then
+				local lineText = line:GetText();
+				-- Fix 2: Use tostring to bypass "secret string" indexing restrictions
+				if (lineText and tostring(lineText):find(battleLevelText)) then
+					-- Already processed, don't add again
+					return;
+				end
 			end
 		end
 	end
