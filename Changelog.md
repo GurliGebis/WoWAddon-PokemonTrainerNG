@@ -1,3 +1,6 @@
+# 12.0.5-20260421-1
+* Updated TOC to match WoW 12.0.5
+
 # 12.0.1-20260325-1
 * Fixed wild pet tooltip using wrong secret variable check and hardcoded tooltip name.
 
