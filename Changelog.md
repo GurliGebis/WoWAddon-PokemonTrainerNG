@@ -1,3 +1,6 @@
+# 12.0.5-20260501-2
+* Fixed Lua error caused by secret/tainted unit values being passed to UnitIsBattlePet by wrapping the call in pcall.
+
 # 12.0.5-20260501-1
 * Fixed Lua error caused by secret value taint when GetUnit is called in instances.
 
