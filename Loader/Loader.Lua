@@ -28,7 +28,9 @@ f:SetScript("OnEvent", function(self, event, ...)
             f:UnregisterEvent(event);
         end
     elseif( event == "UPDATE_MOUSEOVER_UNIT" ) then
-        local name, unit = _G.GameTooltip:GetUnit();
+        local ok, name, unit = pcall(_G.GameTooltip.GetUnit, _G.GameTooltip);
+        -- If GetUnit failed (e.g. due to secret values in instances), bail out.
+        if not ok then return end
 
         -- Handle Classic, where issecretvalue is not defined.
         local issecretvalue = issecretvalue or function(not_used) return false end

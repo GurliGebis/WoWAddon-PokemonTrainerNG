@@ -1,3 +1,6 @@
+# 12.0.5-20260501-1
+* Fixed Lua error caused by secret value taint when GetUnit is called in instances.
+
 # 12.0.5-20260421-1
 * Updated TOC to match WoW 12.0.5
 
