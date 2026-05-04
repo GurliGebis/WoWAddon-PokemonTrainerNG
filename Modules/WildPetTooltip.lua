@@ -90,14 +90,8 @@ end
 function module:ProcessTooltip(tooltip)
 	local name, unit = tooltip:GetUnit();
 
-	-- Fix 1: Handle "secret" or tainted unit values
-	if (not unit or (issecurevariable and not issecurevariable(unit)) or (issecretvariable and issecretvariable(unit))) then
-		return;
-	end
-
 	local func = self.db.profile.onlywildpets and _G.UnitIsWildBattlePet or _G.UnitIsBattlePet;
-	local ok, result = pcall(func, unit);
-	if (not ok or not result) then
+	if (not unit or not func(unit)) then
 		return;
 	end
 
