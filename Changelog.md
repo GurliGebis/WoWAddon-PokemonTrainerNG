@@ -1,3 +1,6 @@
+# 12.0.5-20260506-1
+* Update CallbackHandler library in LibPetJournal-2.0 to a compatible version.
+
 # 12.0.5-20260504-1
 * Fixed WildPetTooltip error caused by incorrect issecurevariable usage.
 
