@@ -1,3 +1,6 @@
+# 12.0.7-20260617-1
+* Updated TOC to match 12.0.7
+
 # 12.0.5-20260608-1
 * Updated Classic TOC to match 5.5.4
 
