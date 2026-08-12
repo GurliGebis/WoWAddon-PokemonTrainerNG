@@ -28,6 +28,7 @@ f:SetScript("OnEvent", function(self, event, ...)
             f:UnregisterEvent(event);
         end
     elseif( event == "UPDATE_MOUSEOVER_UNIT" ) then
+        if InCombatLockdown() then return end -- skip in combat
         local ok, name, unit = pcall(_G.GameTooltip.GetUnit, _G.GameTooltip);
         -- If GetUnit failed (e.g. due to secret values in instances), bail out.
         if not ok then return end

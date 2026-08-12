@@ -1,3 +1,6 @@
+# 12.1.0-20260819-1
+* Prevent loading corruption during combat.
+
 # 12.1.0-20260813-1
 * Updated Loader TOC to match 12.1.0 as well
 
